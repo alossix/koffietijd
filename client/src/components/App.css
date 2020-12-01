@@ -1,0 +1,65 @@
+/* darkcoffeebrown #834D21
+mediumdarkcoffeebrown #986129
+mediumcoffeebrown #EEDFBB
+lightcoffeebrown #F4E7CF
+milkwhite: #FFFAEF
+font-family: 'Open Sans', sans-serif;
+font-family: 'Teko', sans-serif; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: calc(1rem + 0.2vw);
+  background-color: #986129;
+}
+h1 {
+  font-family: "Teko", sans-serif;
+  font-size: calc(5rem + 0.2vw);
+  padding-top: 0.3rem;
+}
+.nav {
+  display: flex;
+  height: 10rem;
+  justify-content: space-between;
+  background-color: #f4e7cf;
+  align-items: center;
+  padding-right: 2.5rem;
+}
+.nav-left {
+  display: flex;
+}
+.nav-h1-holder {
+  display: flex;
+  align-items: center;
+}
+.nav-right {
+  display: flex;
+  flex: 0.5 1 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.nav-logo {
+  width: 100%;
+  max-width: 90px;
+  height: auto;
+}
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-size: calc(1.5rem + 0.2vw);
+  text-transform: uppercase;
+  padding: 0rem 1rem;
+}
+.nav a:hover {
+  color: #3a3a3a;
+}
+.home {
+  background-color: white;
+}
