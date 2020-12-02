@@ -3,6 +3,7 @@ import "./App.css";
 import Nav from "./Nav";
 import Home from "./Home";
 import AddRoaster from "./AddRoaster";
+import AddCoffee from "./AddCoffee";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-          <Route to="/" exact component={Home}></Route>
-          <Route to="/add-roaster" exact component={AddRoaster}></Route>
+          <Route path="/" exact component={Home} />
+          <Route path="/add-roaster" exact component={AddRoaster} />
+          <Route path="/add-coffee" exact component={AddCoffee} />
         </Switch>
       </div>
     </Router>
