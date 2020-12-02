@@ -1,5 +1,6 @@
 /* darkcoffeebrown #834D21
 mediumdarkcoffeebrown #986129
+brightcoffeebrown #CC8D48
 mediumcoffeebrown #EEDFBB
 lightcoffeebrown #F4E7CF
 milkwhite: #FFFAEF
@@ -62,4 +63,28 @@ h1 {
 }
 .home {
   background-color: white;
+}
+.add-roaster {
+  max-width: 50vw;
+}
+.add-roaster-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.add-roaster-form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.add-coffee {
+  max-width: 50vw;
+}
+.add-coffee-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.add-coffee-form input {
+  width: 100%;
+  margin-bottom: 1rem;
 }
