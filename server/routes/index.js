@@ -7,7 +7,6 @@ const Roaster = require("../models/Roaster.model");
 const Coffee = require("../models/Coffee.model");
 
 router.post("/add-roaster", (req, res) => {
-  console.log(req.body);
   const {
     roasterName,
     roasterAddress,
@@ -26,4 +25,35 @@ router.post("/add-roaster", (req, res) => {
   });
 });
 
+router.get("/add-coffee", (req, res) => {
+  Roaster.find({})
+    .then((allRoasters) => res.json(allRoasters))
+    .catch((err) => res.json(err));
+});
+
 module.exports = router;
+
+router.post("/add-coffee", (req, res) => {
+  console.log(req.body);
+  const {
+    roaster,
+    coffeeName,
+    roastStyle,
+    coffeeImageUrl,
+    countryOfOrigin,
+    coffeeDescription,
+  } = req.body;
+  Coffee.create({
+    roaster,
+    coffeeName,
+    roastStyle,
+    coffeeImageUrl,
+    countryOfOrigin,
+    coffeeDescription,
+  })
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err) => console.error(err));
+});

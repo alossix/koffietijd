@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AddRoaster = () => {
   const [roasterName, setRoasterNameState] = useState("");
@@ -75,7 +76,9 @@ const AddRoaster = () => {
         </label>
         <button type="submit">Add New Roaster</button>
       </form>
-      <button type="submit">Add roaster coffees</button>
+      <Link to="/add-coffee">
+        <button>Add roaster coffees</button>
+      </Link>
     </div>
   );
 };
