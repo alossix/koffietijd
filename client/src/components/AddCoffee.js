@@ -7,12 +7,13 @@ const AddCoffee = () => {
   const [coffeeName, setCoffeeNameState] = useState("");
   const [roastStyle, setRoastStyleState] = useState("");
   const [coffeeImageUrl, setCoffeeImageUrlState] = useState("");
+  const [coffeePageUrl, setCoffeePageUrlState] = useState("");
   const [countryOfOrigin, setCountryOfOriginState] = useState("");
   const [coffeeDescription, setCoffeeDescriptionState] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/add-coffee`)
+      .get(`http://localhost:9000/api/add-coffee`)
       .then((result) => {
         console.log(result.data);
         setRoastersState(result.data);
@@ -25,11 +26,12 @@ const AddCoffee = () => {
     event.preventDefault();
     console.log(event.target);
     axios
-      .post("http://localhost:9000/add-coffee", {
+      .post("http://localhost:9000/api/add-coffee", {
         roaster,
         coffeeName,
         roastStyle,
         coffeeImageUrl,
+        coffeePageUrl,
         countryOfOrigin,
         coffeeDescription,
       })
@@ -83,6 +85,16 @@ const AddCoffee = () => {
             value={coffeeImageUrl}
             required
             onChange={(e) => setCoffeeImageUrlState(e.target.value)}
+          ></input>
+        </label>
+        <label>
+          Coffee Page URL:
+          <input
+            type="text"
+            name="coffeePageUrl"
+            value={coffeePageUrl}
+            required
+            onChange={(e) => setCoffeePageUrlState(e.target.value)}
           ></input>
         </label>
         <label>

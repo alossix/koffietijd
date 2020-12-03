@@ -88,3 +88,15 @@ h1 {
   width: 100%;
   margin-bottom: 1rem;
 }
+.signup-consumer {
+  max-width: 50vw;
+}
+.signup-consumer-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.signup-consumer-form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}

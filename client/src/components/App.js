@@ -4,6 +4,9 @@ import Nav from "./Nav";
 import Home from "./Home";
 import AddRoaster from "./AddRoaster";
 import AddCoffee from "./AddCoffee";
+import Signup from "./Signup";
+import SignupConsumer from "./SignupConsumer";
+import SignupRoaster from "./SignupRoaster.js";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/add-roaster" exact component={AddRoaster} />
           <Route path="/add-coffee" exact component={AddCoffee} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/signup-consumer" exact component={SignupConsumer} />
+          <Route path="/signup-roaster" exact component={SignupRoaster} />
         </Switch>
       </div>
     </Router>

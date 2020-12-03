@@ -12,7 +12,7 @@ const AddRoaster = () => {
   const addRoasterHandler = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:9000/add-roaster", {
+      .post("http://localhost:9000/api/add-roaster", {
         roasterName,
         roasterAddress,
         roasterUrl,

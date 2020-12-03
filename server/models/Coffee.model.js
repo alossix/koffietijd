@@ -32,6 +32,17 @@ const coffeeSchema = new mongoose.Schema({
       message: `Please provide a valid URL.`,
     },
   },
+  coffeePageUrl: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        const urlPattern = /(http|https):\/\/(\w+:{0,1}\w*#)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%#!\-/]))?/;
+        const urlRegExp = new RegExp(urlPattern);
+        return value.match(urlRegExp);
+      },
+      message: `Please provide a valid URL.`,
+    },
+  },
   countryOfOrigin: String,
   coffeeDescription: {
     type: String,

@@ -1,8 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
 
-const User = require("../models/User.model");
 const Roaster = require("../models/Roaster.model");
 const Coffee = require("../models/Coffee.model");
 
@@ -21,20 +19,17 @@ router.post("/add-roaster", (req, res) => {
     logoUrl,
     imageUrl,
   }).then((result) => {
-    res.send(result);
+    res.status(200).json(result);
   });
 });
 
 router.get("/add-coffee", (req, res) => {
   Roaster.find({})
-    .then((allRoasters) => res.json(allRoasters))
+    .then((allRoasters) => res.status(200).json(allRoasters))
     .catch((err) => res.json(err));
 });
 
-module.exports = router;
-
 router.post("/add-coffee", (req, res) => {
-  console.log(req.body);
   const {
     roaster,
     coffeeName,
@@ -52,8 +47,9 @@ router.post("/add-coffee", (req, res) => {
     coffeeDescription,
   })
     .then((result) => {
-      console.log(result);
-      res.send(result);
+      res.status(200).json(result);
     })
     .catch((err) => console.error(err));
 });
+
+module.exports = router;

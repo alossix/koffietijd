@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <main className="home">
-      <Link to="/add-roaster">Add a New Roaster</Link>
+      <div className="signup-holder">
+        <Link to="/signup">Sign up as a consumer or roaster</Link>
+      </div>
     </main>
   );
 };
