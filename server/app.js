@@ -41,8 +41,8 @@ app.use(
 );
 
 app.use("/", require("./routes/index.routes"));
-app.use("/", require("./routes/auth.routes"));
-app.use("/", require("./routes/user.routes"));
+app.use("/api", require("./routes/auth.routes"));
+app.use("/user", require("./routes/user.routes"));
 
 app.use(function (req, res, next) {
   next(createError(404));
