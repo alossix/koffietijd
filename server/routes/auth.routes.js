@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-
 const User = require("../models/User.model");
 
 router.post("/signup", (req, res) => {
@@ -64,8 +61,13 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.post("/login", (req, res) => {
-  passport.authenticate("local", (err, user, failureDetails) => {
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    console.log(`inside authenticate session`);
+    console.log(
+      `req.session.passport: ${JSON.stringify(req.session.passport)}`
+    );
+    console.log(`req.user: ${JSON.stringify(req.user)}`);
     if (err) {
       res
         .status(500)
@@ -74,11 +76,13 @@ router.post("/login", (req, res) => {
     }
 
     if (!user) {
-      res.status(401).json(failureDetails);
+      console.log(`/login ERR !user auth route 2`);
+      res.status(401).json(info);
       return;
     }
 
     req.login(user, (err) => {
+      console.log(`/login auth route 3`);
       if (err) {
         res
           .status(500)
@@ -91,16 +95,19 @@ router.post("/login", (req, res) => {
   })(req, res, next);
 });
 
-router.post("/logout", (req, res) => {
+router.post("/logout", (req, res, next) => {
+  console.log(`/logout auth route 4`);
   req.logout();
   res.status(200).json({ message: "Successfully logged out." });
 });
 
-router.get("/loggedin", (req, res) => {
+router.get("/loggedin", (req, res, next) => {
   if (req.isAuthenticated()) {
+    console.log(`/loggedin auth route 5`);
     res.status(200).json(req.user);
     return;
   }
+  console.log(`/loggedin ERR unauthorized`);
   res.status(403).json({ message: "Unauthorized" });
 });
 

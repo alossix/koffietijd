@@ -6,8 +6,12 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const { v4: uuidv4 } = require("uuid");
+const bodyParser = require("body-parser");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 
@@ -18,16 +22,20 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
+    genid: (req) => {
+      return uuidv4();
+    },
     secret: process.env.SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
+    store: new MongoStore({ url: process.env.MONGODB_URI }),
   })
 );
 app.use(passport.initialize());
@@ -42,7 +50,7 @@ app.use(
 
 app.use("/", require("./routes/index.routes"));
 app.use("/api", require("./routes/auth.routes"));
-app.use("/user", require("./routes/user.routes"));
+app.use("/api", require("./routes/user.routes"));
 
 app.use(function (req, res, next) {
   next(createError(404));

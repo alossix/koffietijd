@@ -8,6 +8,7 @@ import AddCoffee from "./AddCoffee";
 import Signup from "./auth/Signup";
 import Footer from "./Footer";
 import AuthService from "./auth/auth-service";
+import Login from "./auth/Login";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -22,24 +23,29 @@ function App() {
           setLoggedInUser(response);
         })
         .catch((err) => {
-          setLoggedInUser(false);
+          setLoggedInUser(null);
         });
     }
   };
 
   const getUser = (userObj) => {
+    console.log(`this is the userObj: ${userObj}`);
     setLoggedInUser(userObj);
   };
 
   fetchUser();
+  console.log(`app.js loggedInUser: ${loggedInUser}`);
 
   if (loggedInUser) {
     return (
       <Router>
         <div className="App">
           <Nav userInSession={loggedInUser} />
+          <p>LOGGED IN ROUTE</p>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/add-roaster" exact component={AddRoaster} />
+            <Route path="/add-coffee" exact component={AddCoffee} />
           </Switch>
           <Footer />
         </div>
@@ -50,10 +56,14 @@ function App() {
       <Router>
         <div className="App">
           <Nav />
+          <p>NOT LOGGED IN ROUTE</p>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/add-roaster" exact component={AddRoaster} />
-            <Route path="/add-coffee" exact component={AddCoffee} />
+            <Route
+              path="/login"
+              exact
+              render={() => <Login getUser={getUser} />}
+            />
             <Route
               path="/signup"
               exact
