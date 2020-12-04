@@ -1,28 +1,25 @@
 import React, { useState } from "react";
-import axios from "axios";
+import AuthService from "./auth-service";
+import { Link } from "react-router-dom";
 
-const SignupConsumer = () => {
+const Signup = (props) => {
   const [email, setEmailState] = useState("");
   const [firstName, setFirstNameState] = useState("");
   const [lastName, setLastNameState] = useState("");
   const [password, setPasswordState] = useState("");
 
+  const service = new AuthService();
+
   const addUserHandler = (event) => {
     event.preventDefault();
-    console.log(event.target);
-    axios
-      .post("http://localhost:9000/api/signup-consumer", {
-        email,
-        firstName,
-        lastName,
-        password,
+    service
+      .signup(email, firstName, lastName, password)
+      .then((response) => {
+        setEmailState(email);
+        setPasswordState(password);
+        props.getUser(response);
       })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -70,8 +67,10 @@ const SignupConsumer = () => {
         </label>
         <button type="submit">Submit</button>
       </form>
+      <p>Already have an account?</p>
+      <Link to={"/"}>Log in</Link>
     </div>
   );
 };
 
-export default SignupConsumer;
+export default Signup;
