@@ -8,6 +8,7 @@
 # testing
 /client/coverage
 /client/.eslintcache
+client/.eslintcache
 
 # production
 /client/build
