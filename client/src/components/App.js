@@ -9,6 +9,8 @@ import Signup from "./auth/Signup";
 import Footer from "./Footer";
 import AuthService from "./auth/auth-service";
 import Login from "./auth/Login";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import UserProfile from "./user/UserProfile";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -36,45 +38,36 @@ function App() {
   fetchUser();
   console.log(`app.js loggedInUser: ${loggedInUser}`);
 
-  if (loggedInUser) {
-    return (
-      <Router>
-        <div className="App">
-          <Nav userInSession={loggedInUser} />
-          <p>LOGGED IN ROUTE</p>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/add-roaster" exact component={AddRoaster} />
-            <Route path="/add-coffee" exact component={AddCoffee} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-    );
-  } else {
-    return (
-      <Router>
-        <div className="App">
-          <Nav />
-          <p>NOT LOGGED IN ROUTE</p>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route
-              path="/login"
-              exact
-              render={() => <Login getUser={getUser} />}
-            />
-            <Route
-              path="/signup"
-              exact
-              render={() => <Signup getUser={getUser} />}
-            />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <div className="App">
+        <Nav userInSession={loggedInUser} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/add-roaster" exact component={AddRoaster} />
+          <Route path="/add-coffee" exact component={AddCoffee} />
+          <Route path="/" exact component={Home} />
+          <Route
+            path="/login"
+            exact
+            userInSession={loggedInUser}
+            render={() => <Login getUser={getUser} />}
+          />
+          <Route
+            path="/signup"
+            exact
+            render={() => <Signup getUser={getUser} />}
+          />
+          <ProtectedRoute
+            userInSession={loggedInUser}
+            path="/user"
+            component={UserProfile}
+          />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 export default App;

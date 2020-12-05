@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthService from "./auth-service";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const Login = (props) => {
   const [email, setEmailState] = useState("");
   const [password, setPasswordState] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+    service.logout().then(() => {
+      setLoggedInUser(null);
+    });
+  }, [loggedInUser]);
 
   const service = new AuthService();
 
@@ -13,11 +20,10 @@ const Login = (props) => {
     service
       .login(email, password)
       .then((response) => {
-        console.log(`this is the response: ${response}`);
         setEmailState(email);
         setPasswordState(password);
         props.getUser(response);
-        // props.history.push("/");
+        props.history.push("/user");
       })
       .catch((err) => console.error(`this is the error, login page 1: ${err}`));
   };
@@ -53,4 +59,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

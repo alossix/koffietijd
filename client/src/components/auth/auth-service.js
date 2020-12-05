@@ -16,19 +16,13 @@ class AuthService {
   };
 
   loggedin = () => {
-    console.log(`auth service LOGGED-IN part 1 runs`);
-    return this.service.get("/loggedin").then((response) => {
-      console.log(`this is the auth service LOGGED-IN response: ${response}`);
-      return response.data;
-    });
+    return this.service.get("/loggedin").then((response) => response.data);
   };
 
   login = (email, password) => {
-    console.log(`auth-service login runs`);
-    return this.service.post("/login", { email, password }).then((response) => {
-      console.log(`this is the auth service LOGIN response: ${response}`);
-      return response.data;
-    });
+    return this.service
+      .post("/login", { email, password })
+      .then((response) => response.data);
   };
 
   logout = () => {

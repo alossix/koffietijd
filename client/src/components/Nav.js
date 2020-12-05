@@ -17,55 +17,29 @@ const Nav = (props) => {
     setLoggedInUser(props.userInSession);
   }, [props.userInSession]);
 
-  if (loggedInUser) {
-    return (
-      <nav className="nav">
-        <NavLink to="/">
-          <div className="nav-left">
-            <div className="nav-logo-holder">
-              <img
-                className="nav-logo"
-                src="/logo512.png"
-                alt="koffietijd"
-              ></img>
-            </div>
-            <div className="nav-h1-holder">
-              <h1>koffietijd</h1>
-            </div>
+  return (
+    <nav className="nav">
+      <NavLink to="/">
+        <div className="nav-left">
+          <div className="nav-logo-holder">
+            <img className="nav-logo" src="/logo512.png" alt="koffietijd"></img>
           </div>
-        </NavLink>
-        <div className="nav-right">
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <div className="nav-h1-holder">
+            <h1>koffietijd</h1>
+          </div>
+        </div>
+      </NavLink>
+      <div className="nav-right">
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+        {loggedInUser ? (
           <button onClick={logOut}>Log Out</button>
-        </div>
-      </nav>
-    );
-  } else {
-    return (
-      <nav className="nav">
-        <NavLink to="/">
-          <div className="nav-left">
-            <div className="nav-logo-holder">
-              <img
-                className="nav-logo"
-                src="/logo512.png"
-                alt="koffietijd"
-              ></img>
-            </div>
-            <div className="nav-h1-holder">
-              <h1>koffietijd</h1>
-            </div>
-          </div>
-        </NavLink>
-        <div className="nav-right">
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+        ) : (
           <NavLink to="/login">Log in</NavLink>
-        </div>
-      </nav>
-    );
-  }
+        )}
+      </div>
+    </nav>
+  );
 };
 
 export default withRouter(Nav);
