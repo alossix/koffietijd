@@ -44,6 +44,7 @@ const coffeeSchema = new mongoose.Schema({
     },
   },
   countryOfOrigin: String,
+  price: String,
   coffeeDescription: {
     type: String,
     required: [true, "Please enter a description of the coffee"],

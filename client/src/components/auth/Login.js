@@ -7,13 +7,15 @@ const Login = (props) => {
   const [password, setPasswordState] = useState("");
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  useEffect(() => {
-    service.logout().then(() => {
-      setLoggedInUser(null);
-    });
-  }, [loggedInUser]);
-
   const service = new AuthService();
+
+  useEffect(() => {
+    if (loggedInUser) {
+      service.logout().then(() => {
+        setLoggedInUser(null);
+      });
+    }
+  }, []);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();

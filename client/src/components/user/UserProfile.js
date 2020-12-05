@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserProfile = () => {
+const UserProfile = (props) => {
   return <div>This is a test of the user profile page</div>;
 };
 

@@ -13,7 +13,7 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import UserProfile from "./user/UserProfile";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState();
 
   const service = new AuthService();
 
@@ -21,22 +21,19 @@ function App() {
     if (loggedInUser === null) {
       service
         .loggedin()
-        .then((response) => {
-          setLoggedInUser(response);
+        .then(() => {
+          setLoggedInUser(null);
         })
         .catch((err) => {
           setLoggedInUser(null);
         });
     }
   };
+  fetchUser();
 
   const getUser = (userObj) => {
-    console.log(`this is the userObj: ${userObj}`);
     setLoggedInUser(userObj);
   };
-
-  fetchUser();
-  console.log(`app.js loggedInUser: ${loggedInUser}`);
 
   return (
     <Router>

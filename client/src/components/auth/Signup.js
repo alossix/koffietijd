@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AuthService from "./auth-service";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const Signup = (props) => {
   const [email, setEmailState] = useState("");
@@ -18,6 +18,7 @@ const Signup = (props) => {
         setEmailState(email);
         setPasswordState(password);
         props.getUser(response);
+        props.history.push("/user");
       })
       .catch((err) => console.error(err));
   };
@@ -73,4 +74,4 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+export default withRouter(Signup);

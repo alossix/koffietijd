@@ -3,7 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import AuthService from "./auth/auth-service";
 
 const Nav = (props) => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(props.userInSession);
   const service = new AuthService();
 
   const logOut = () => {
