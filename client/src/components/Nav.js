@@ -1,7 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import AuthService from "./auth/auth-service";
 
-const Nav = () => {
+const Nav = (props) => {
+  const [loggedInUser, setLoggedInUser] = useState(props.userInSession);
+  const service = new AuthService();
+
+  const logOut = () => {
+    service.logout().then(() => {
+      setLoggedInUser(null);
+      props.history.push("/");
+    });
+  };
+
+  useEffect(() => {
+    setLoggedInUser(props.userInSession);
+  }, [props.userInSession]);
+
   return (
     <nav className="nav">
       <NavLink to="/">
@@ -17,10 +32,14 @@ const Nav = () => {
       <div className="nav-right">
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/login">Log in</NavLink>
+        {loggedInUser ? (
+          <button onClick={logOut}>Log Out</button>
+        ) : (
+          <NavLink to="/login">Log in</NavLink>
+        )}
       </div>
     </nav>
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

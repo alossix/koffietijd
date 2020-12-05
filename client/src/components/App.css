@@ -1,9 +1,11 @@
-/* darkcoffeebrown #834D21
-mediumdarkcoffeebrown #986129
-brightcoffeebrown #CC8D48
-mediumcoffeebrown #EEDFBB
-lightcoffeebrown #F4E7CF
-milkwhite: #FFFAEF
+/* black #140e03
+verydarkbrown #3e2b08
+darkcoffeebrown #52462f
+mediumdarkcoffeebrown #786644
+mediumdark: #9C8559
+gingertea: #B19D77
+sweetcoconutmilk: #FBF1DF
+milkwhite: #fefaf3
 font-family: 'Open Sans', sans-serif;
 font-family: 'Teko', sans-serif; */
 
@@ -12,13 +14,17 @@ font-family: 'Teko', sans-serif; */
   padding: 0;
   box-sizing: border-box;
 }
+.App {
+  border: 5px solid #8a6d39;
+}
 html {
   font-size: 10px;
+  color: #140e03;
 }
 body {
   font-family: "Open Sans", sans-serif;
   font-size: calc(1rem + 0.2vw);
-  background-color: #986129;
+  background-color: #8a6d39;
 }
 h1 {
   font-family: "Teko", sans-serif;
@@ -27,9 +33,9 @@ h1 {
 }
 .nav {
   display: flex;
-  height: 10rem;
+  min-height: 8vh;
   justify-content: space-between;
-  background-color: #f4e7cf;
+  background-color: #fbf1df;
   align-items: center;
   padding-right: 2.5rem;
 }
@@ -53,16 +59,36 @@ h1 {
 }
 .nav a {
   text-decoration: none;
-  color: black;
+  color: #140e03;
   font-size: calc(1.5rem + 0.2vw);
   text-transform: uppercase;
   padding: 0rem 1rem;
 }
 .nav a:hover {
-  color: #3a3a3a;
+  color: #3e2b08;
 }
 .home {
-  background-color: white;
+  background-color: #fbf1df;
+  height: 84vh;
+}
+.home-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.tagline {
+  background-color: #8a6d39;
+  padding: 5rem 10rem;
+}
+.why-koffietijd {
+  height: 10vh;
+  background-color: #8a6d39;
+}
+.signup-container {
+  background-color: #8a6d39;
+  height: 10vh;
 }
 .add-roaster {
   max-width: 50vw;
@@ -87,4 +113,23 @@ h1 {
 .add-coffee-form input {
   width: 100%;
   margin-bottom: 1rem;
+}
+.signup-consumer {
+  max-width: 50vw;
+}
+.signup-consumer-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.signup-consumer-form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.footer {
+  display: flex;
+  width: 100%;
+  min-height: 7vh;
+  background-color: #fbf1df;
+  align-items: center;
 }

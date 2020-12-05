@@ -32,7 +32,7 @@ const roasterSchema = new mongoose.Schema({
       message: `Please provide a valid URL.`,
     },
   },
-  imageUrl: {
+  webshopUrl: {
     type: String,
     validate: {
       validator: function (value) {
